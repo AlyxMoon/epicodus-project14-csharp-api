@@ -25,9 +25,9 @@ namespace MyApi.Controllers
     }
 
     [HttpGet]
-    public void Find ()
+    public List<Animal> Find ()
     {
-
+      return _db.Animals.ToList();
     }
 
     [HttpGet("random")]
@@ -37,9 +37,9 @@ namespace MyApi.Controllers
     }
 
     [HttpGet("{id}")]
-    public void Get (int id)
+    public Animal Get (int id)
     {
-
+      return _db.Animals.FirstOrDefault(item => item.AnimalId == id);
     }
 
     [HttpPost]
