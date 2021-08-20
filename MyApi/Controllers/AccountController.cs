@@ -99,11 +99,5 @@ namespace MyApi.Controllers
 
       return new LoginResultViewModel(result, currentUser, generatedToken);
     }
-
-    [HttpGet("logout")]
-    public async void Logout ()
-    {
-      await _signInManager.SignOutAsync();
-    }
   }
 }
