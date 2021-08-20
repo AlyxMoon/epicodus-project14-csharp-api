@@ -43,9 +43,12 @@ namespace MyApi.Controllers
     }
 
     [HttpPost]
-    public void Create ()
+    public async Task<Animal> Create (Animal animal)
     {
+      _db.Animals.Add(animal);
+      await _db.SaveChangesAsync();
 
+      return animal;
     }
 
     [HttpPut("{id}")]
