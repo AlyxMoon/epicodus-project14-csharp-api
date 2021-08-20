@@ -29,6 +29,8 @@ namespace MyApi
     {
       services.AddMvc();
 
+      services.AddSingleton<IConfiguration>(Configuration);
+
       string connection = Configuration["ConnectionStrings:DefaultConnection"];
       ServerVersion version = ServerVersion.AutoDetect(connection);
 
