@@ -27,7 +27,9 @@ namespace MyApi
 
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddMvc();
+      services
+        .AddMvc()
+        .AddNewtonsoftJson();
 
       services.AddSingleton<IConfiguration>(Configuration);
 
