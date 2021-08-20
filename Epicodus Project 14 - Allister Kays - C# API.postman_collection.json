@@ -1,0 +1,622 @@
+{
+	"info": {
+		"_postman_id": "cef95b33-d8a5-4a4b-82c6-e743e2bd1a1f",
+		"name": "Epicodus Project 14 | Allister Kays | C# API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register New User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/auth/register",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register New User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/auth/register",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Login As User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Content-Type is present and JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get('Content-Type').includes('application/json')).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Token is included\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData.token).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/auth/login",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login As User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user1\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/auth/login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Check Authenticated User Info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Content-Type is present and JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get('Content-Type').includes('application/json')).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"ID and username are returned\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData.id).to.exist;\r",
+							"    pm.expect(jsonData.userName).to.exist;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/auth",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Animals - Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Type\": \"\",\r\n    \"Breed\": \"\",\r\n    \"Age\": 0,\r\n    \"Name\": \"\",\r\n    \"Description\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/animals",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"animals"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create a cat",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Type\": \"cat\",\r\n    \"Breed\": \"munchkin\",\r\n    \"Age\": 1,\r\n    \"Name\": \"Poppy\",\r\n    \"Description\": \"Young and curious about the world!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/animals",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"animals"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Create a dog",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Type\": \"dog\",\r\n    \"Breed\": \"german shepherd\",\r\n    \"Age\": 12,\r\n    \"Name\": \"Rex\",\r\n    \"Description\": \"He's spent a lot of time herding sheep and now he's looking for his forever home!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/animals",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"animals"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Animals - Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/animals",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"animals"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Animals - Get All",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/animals",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"animals"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Animals - Get Single By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/animals/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"animals",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Animals - Get Single By ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/animals/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"animals",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Animals - Get Single Randomly",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/animals/random",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"animals",
+						"random"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Animals - Get Single Randomly",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/animals/random",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"animals",
+								"random"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Animals - Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Type\": \"cat\",\r\n    \"Breed\": \"munchkin\",\r\n    \"Age\": 1,\r\n    \"Name\": \"Poppy\",\r\n    \"Description\": \"Young and curious about the world!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/animals/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"animals",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Animals - Update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Type\": \"cat\",\r\n    \"Breed\": \"munchkin\",\r\n    \"Age\": 1,\r\n    \"Name\": \"Poppy\",\r\n    \"Description\": \"Young and curious about the world!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/animals/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"animals",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Animals - Patch",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"value\": 2,\r\n        \"path\": \"/age\",\r\n        \"op\": \"replace\"\r\n    },\r\n    {\r\n        \"value\": \"potato\",\r\n        \"path\": \"/name\",\r\n        \"op\": \"replace\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/animals/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"animals",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Animals - Patch",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"value\": 2,\r\n        \"path\": \"/age\",\r\n        \"op\": \"replace\"\r\n    },\r\n    {\r\n        \"value\": \"potato\",\r\n        \"path\": \"/name\",\r\n        \"op\": \"replace\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/animals/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"animals",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Animals - Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/animals/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"animals",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Animals - Delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/animals/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"animals",
+								"1"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://localhost:5000/api"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": "user1"
+		},
+		{
+			"key": "password",
+			"value": "password"
+		}
+	]
+}
