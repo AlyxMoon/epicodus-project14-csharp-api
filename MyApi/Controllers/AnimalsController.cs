@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,9 +32,13 @@ namespace MyApi.Controllers
     }
 
     [HttpGet("random")]
-    public void GetRandom ()
+    public Animal GetRandom ()
     {
+      int count = _db.Animals.Count();
+      if (count == 0) return new Animal();
 
+      Random random = new ();
+      return _db.Animals.Skip(random.Next(0, count - 1)).Take(1).First();
     }
 
     [HttpGet("{id}")]
