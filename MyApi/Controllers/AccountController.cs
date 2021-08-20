@@ -90,7 +90,7 @@ namespace MyApi.Controllers
       SymmetricSecurityKey authSigningKey = new(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
       JwtSecurityToken token = new(   
-        expires: DateTime.Now.AddSeconds(2),
+        expires: DateTime.Now.AddDays(14),
         claims: authClaims,
         signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)  
       );
